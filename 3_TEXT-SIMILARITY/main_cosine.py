@@ -36,7 +36,8 @@ class MRCosineSimilarityScore(MRJob):
 
     def steps(self):
         return [
-            MRStep(mapper_raw=self.extract_entities, reducer=self.cosine_reducer)
+            MRStep(mapper_raw=self.extract_entities,
+                   reducer=self.cosine_reducer)
         ]
 
     def extract_entities(self, json_path, json_uri):
