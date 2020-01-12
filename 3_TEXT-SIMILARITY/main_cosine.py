@@ -52,11 +52,13 @@ class MRCosineSimilarityScore(MRJob):
         seed(45)  # Set seed
         random_number = randrange(0, len(js) - 1, 1)  # Get random number between 0 and length of json array
         random_summary = js[random_number]["summary"]  # Get corresponding random summary
+        random_summary = random_summary.replace('\n', ' ')  # Line added only for visual purposes, the real filter is in Utils
         random_id = js[random_number]["id"]  # Get id of random summary
         set_random_summary = string_to_set(random_summary)  # Filter stop words from random summary
         string_random_summary = " ".join(set_random_summary)  # Transform set into string
 
         for entity in js:
+            entity["summary"] = entity["summary"].replace('\n', ' ')  # Line added only for visual purposes, the real filter is in Utils
             set_summary = string_to_set(entity["summary"])  # Filter stop words from summary
             string_summary = " ".join(set_summary)  # Transform set into string
             vectors = vectorizer.fit_transform([string_random_summary, string_summary])  # Vectorize summary using Tfid
