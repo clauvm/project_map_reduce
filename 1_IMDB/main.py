@@ -98,7 +98,7 @@ class MRCounterCommonKeysMovieGenre(MRJob):
         """
         aux = 0
         for count, word in sorted(word_counts, reverse=True):
-            if aux < 15: # Controls that we get only the 50 most common keywords
+            if aux < 15: # Controls that we get only the 15 most common keywords
                 aux = aux+1
                 yield type, (int(count), word)
 
